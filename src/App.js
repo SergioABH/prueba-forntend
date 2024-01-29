@@ -3,6 +3,7 @@ import { useState } from "react";
 import Axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Swal from 'sweetalert2'
+import BACKEND_URL from './config.js';
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
   const [clientesList,setClientes] = useState([]);
 
   const add = ()=>{
-    Axios.post("http://localhost:8080/create",{
+    Axios.post(`${BACKEND_URL}/create`,{
       nombre:nombre,
       apellido:apellido,
       correo:correo
@@ -32,7 +33,7 @@ function App() {
   }
 
   const update = ()=>{
-    Axios.put("http://localhost:8080/update",{
+    Axios.put(`${BACKEND_URL}/update`,{
       id:id,
       nombre:nombre,
       apellido:apellido,
@@ -59,7 +60,7 @@ function App() {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.delete(`http://localhost:8080/delete/ ${val.id}`).then(()=>{
+        Axios.delete(`${BACKEND_URL}/delete/${val.id}`).then(()=>{
           getClientes();  
           limpiar();
           Swal.fire({
@@ -90,7 +91,7 @@ function App() {
   }
 
   const getClientes = ()=>{
-    Axios.get("http://localhost:8080/clientes").then((response)=>{
+    Axios.get(`${BACKEND_URL}/clientes`).then((response)=>{
       setClientes(response.data);
     });
   }
