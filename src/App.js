@@ -17,7 +17,7 @@ function App() {
   const [clientesList,setClientes] = useState([]);
 
   const add = ()=>{
-    Axios.post(`https://backend2-mern.onrender.com/create`,{
+    Axios.post(`${BACKEND_URL}/create`,{
       nombre:nombre,
       apellido:apellido,
       correo:correo
@@ -33,7 +33,7 @@ function App() {
   }
 
   const update = ()=>{
-    Axios.put(`https://backend2-mern.onrender.com/update`,{
+    Axios.put(`${BACKEND_URL}/update`,{
       id:id,
       nombre:nombre,
       apellido:apellido,
@@ -60,7 +60,7 @@ function App() {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.delete(`https://backend2-mern.onrender.com/delete/${val.id}`).then(()=>{
+        Axios.delete(`${BACKEND_URL}/delete/${val.id}`).then(()=>{
           getClientes();  
           limpiar();
           Swal.fire({
@@ -91,7 +91,7 @@ function App() {
   }
 
   const getClientes = ()=>{
-    Axios.get(`https://backend2-mern.onrender.com/clientes`).then((response)=>{
+    Axios.get(`${BACKEND_URL}/clientes`).then((response)=>{
       setClientes(response.data);
     });
   }
