@@ -3,7 +3,8 @@ import { useState } from "react";
 import Axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Swal from 'sweetalert2'
-import BACKEND_URL from './config.js';
+
+const BACKEND_URL = "https://backend2-mern.onrender.com" || "http://localhost:8080";
 
 function App() {
 
